@@ -1,0 +1,128 @@
+/* src/App.css */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.app-container {
+  max-width: 800px;
+  /* Limit width on larger screens */
+  margin: 0 auto;
+  /* Center the container */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2 {
+  color: #333;
+  text-align: center;
+}
+
+.upload-section,
+.editor-area,
+.output-section {
+  margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.upload-section label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.upload-section input[type="file"] {
+  padding: 5px;
+}
+
+/* Add more styles as needed for specific components later */
+.video-player-container video {
+  display: block;
+  /* Prevent extra space below video */
+  width: 100%;
+  /* Make video responsive */
+  max-width: 600px;
+  /* Optional: limit max video size */
+  margin: 10px auto;
+  /* Center video */
+  background-color: #000;
+  /* Black background for letterboxing */
+}
+
+.controls-container {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.controls-container h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.controls-container label {
+  display: block;
+  /* Each label/input on new line */
+  margin-bottom: 8px;
+  font-size: 0.9em;
+  color: #444;
+}
+
+.controls-container input[type="number"] {
+  width: 80px;
+  /* Adjust width as needed */
+  padding: 5px;
+  margin-left: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.output-section p {
+  background-color: #eef;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-family: monospace;
+  word-break: break-all;
+  color: #333;
+  /* Wrap long URLs/values */
+}
+
+.editor-area p {
+  color: #333;
+  /* Wrap long URLs/values */
+}
+
+.playback-controls {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.playback-controls button {
+  padding: 8px 15px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #4CAF50;
+  /* Green */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.playback-controls button:hover {
+  background-color: #45a049;
+}
+
+.playback-controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

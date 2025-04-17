@@ -1,0 +1,94 @@
+/* src/Trimmer.css */
+.trimmer-container {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    /* Include padding in width calculation */
+}
+
+.slider-wrapper {
+    width: 95%;
+    /* Adjust width as needed */
+    margin: 20px auto;
+    /* Center the slider */
+}
+
+.horizontal-slider {
+    width: 100%;
+    height: 20px;
+    /* Height of the container, allows space for thumbs */
+    position: relative;
+    border: 1px solid #ddd;
+    /* Optional border */
+    border-radius: 10px;
+    background-color: #f0f0f0;
+}
+
+.slider-track {
+    /* Base track style is often handled by renderTrack's inline style now */
+    /* You might need styles here if not using renderTrack */
+    position: absolute;
+    height: 6px;
+    border-radius: 3px;
+    top: 7px;
+    /* Center vertically */
+    background-color: #ddd;
+    /* Default track color */
+}
+
+/* Style for the track piece *between* thumbs is handled in renderTrack */
+/* track-1 is the segment between thumbs when withTracks is true */
+.horizontal-slider .slider-track.track-1 {
+    background-color: #82E0AA;
+    /* Green selection */
+}
+
+
+.slider-thumb {
+    cursor: grab;
+    background-color: #3498DB;
+    /* Blue thumb color */
+    color: white;
+    font-size: 0.8em;
+    text-align: center;
+    line-height: 20px;
+    /* Vertically center text */
+    width: 40px;
+    /* Width of the thumb */
+    height: 20px;
+    /* Height of the thumb */
+    border-radius: 3px;
+    border: 1px solid #2577ae;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    outline: none;
+    /* Remove focus outline if desired */
+    position: absolute;
+    /* Needed for positioning by the library */
+    top: 0px;
+    /* Align thumb with the top of the slider container */
+    transform: translateX(-50%);
+    /* Center thumb horizontally over its value */
+    z-index: 1;
+    /* Ensure thumbs are above the track */
+}
+
+.slider-thumb:active {
+    cursor: grabbing;
+    background-color: #2577ae;
+    /* Darker blue when dragging */
+}
+
+.time-display,
+.duration-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.duration-display {
+    justify-content: center;
+    margin-top: 10px;
+    font-weight: bold;
+}

@@ -55,6 +55,61 @@ h2 {
   /* Black background for letterboxing */
 }
 
+.video-crop-container {
+  position: relative;
+  /* CRITICAL for ReactCrop positioning */
+  max-width: 600px;
+  /* Control max size */
+  width: 95%;
+  /* Make it responsive */
+  margin: 15px auto;
+  /* Center the block */
+  background-color: #111;
+  /* Dark background to see video edges */
+  overflow: hidden;
+  /* Hide anything spilling out */
+  line-height: 0;
+  /* Prevent potential extra space issues */
+}
+
+.video-element-for-crop {
+  display: block;
+  /* Ensure it behaves like a block */
+  width: 100%;
+  /* Make video fill the container width */
+  height: auto;
+  /* Maintain video's aspect ratio */
+  max-height: 70vh;
+  /* Optional: Limit height on tall screens */
+}
+
+/* --- Override ReactCrop Default Positioning --- */
+/* Make the main ReactCrop container act as an overlay */
+.video-crop-container>.ReactCrop {
+  position: absolute;
+  /* Override library's 'relative' */
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* Make it fill the container */
+  height: 100%;
+  /* Make it fill the container */
+  display: block;
+  /* Override library's 'inline-block' */
+  /* max-width: none; */
+  /* Override library's max-width if needed, but likely okay */
+  z-index: 10;
+  /* Ensure it's above the video element */
+}
+
+/* --------------------------------------------- */
+
+
+/* Make the crop area more visible for debugging */
+.ReactCrop__crop-selection {
+  border: 2px dashed yellow !important;
+}
+
 .controls-container {
   margin-top: 15px;
   padding: 10px;
@@ -125,4 +180,25 @@ h2 {
 .playback-controls button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+/* --- Styles for ReactCrop --- */
+/* The library CSS (imported in main.jsx) provides base styles */
+/* We need to ensure the .ReactCrop root element behaves correctly */
+
+.ReactCrop {
+  /* The library sets position: absolute. */
+  /* Ensure it knows its bounds via the relative parent (.video-crop-container) */
+  /* We don't usually need to set width/height here if the parent is sized */
+}
+
+/* Make the crop area more visible for debugging */
+.ReactCrop__crop-selection {
+  border: 2px dashed yellow !important;
+  /* Override library style to be obvious */
+}
+
+.ReactCrop__drag-handle {
+  /* Make handles slightly bigger/more visible if needed */
+  /* background-color: rgba(255, 255, 0, 0.7) !important; */
 }

@@ -11,11 +11,12 @@ function VideoPlayer({ videoUrl, onMetadataLoaded, videoRef }) { // Added videoR
     useEffect(() => {
         const videoElement = videoRef.current; // Use the passed-in ref
         if (!videoElement) return;
+        console.log('VideoPlayer effect running, adding listeners for', videoUrl);
 
-        videoElement.load(); // Explicitly tell the element to load the source
+        // videoElement.load(); // Explicitly tell the element to load the source
 
         const handleLoadedMetadata = () => {
-            console.log("Metadata loaded!");
+            console.log("Metadata loaded inside VideoPlayer!");
             if (onMetadataLoaded) {
                 onMetadataLoaded({
                     duration: videoElement.duration,
@@ -25,25 +26,35 @@ function VideoPlayer({ videoUrl, onMetadataLoaded, videoRef }) { // Added videoR
             }
         };
 
+        // Clean up previous listener before adding
+        videoElement.removeEventListener('loadedmetadata', handleLoadedMetadata);
         videoElement.addEventListener('loadedmetadata', handleLoadedMetadata);
-        // Reset currentTime if URL changes - helps if loading same file again
-        videoElement.currentTime = 0;
 
 
         return () => {
+            console.log('VideoPlayer effect cleanup, removing listeners for', videoUrl);
             videoElement.removeEventListener('loadedmetadata', handleLoadedMetadata);
         };
         // Depend on videoRef.current directly if possible, or just videoUrl/callback
     }, [videoUrl, onMetadataLoaded, videoRef]);
 
+    // --- RETURN ONLY THE VIDEO TAG ---
     return (
-        <div className="video-player-container">
-            {/* Assign the passed-in ref to the video element */}
-            <video ref={videoRef} src={videoUrl} controls={false} /*muted*/ playsInline>
-                Your browser does not support the video tag.
-            </video>
-        </div>
+        <video
+            ref={videoRef}
+            src={videoUrl}
+            controls={false}
+            // muted // Keep off for now
+            playsInline
+            className="video-element-for-crop" // Add class for styling
+            preload="auto" // Hint to browser to load metadata quickly
+            // Prevent context menu on long press if it interferes with drag
+            onContextMenu={(e) => e.preventDefault()}
+        >
+            Your browser does not support the video tag.
+        </video>
     );
+    // --- NO WRAPPER DIV AROUND VIDEO ---
 }
 
 export default VideoPlayer;

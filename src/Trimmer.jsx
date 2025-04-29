@@ -8,7 +8,10 @@ import './Trimmer.css';
 // - startTime: Current start time value from parent state
 // - endTime: Current end time value from parent state
 // - onTimesChange: NEW - Callback receives ([newStart, newEnd], thumbIndex)
-function Trimmer({ duration, startTime, endTime, onTimesChange }) {
+const Trimmer = React.memo(({ duration, startTime, endTime, onTimesChange }) => {
+
+
+    console.log(`Trimmer rendering with props: duration=${duration}, startTime=${startTime}, endTime=${endTime}`);
 
     // This function handles changes from the ReactSlider
     // 'value' will be an array like [newStartTime, newEndTime]
@@ -82,6 +85,6 @@ function Trimmer({ duration, startTime, endTime, onTimesChange }) {
             </div>
         </div>
     );
-}
+});
 
 export default Trimmer;
